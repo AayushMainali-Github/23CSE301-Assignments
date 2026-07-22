@@ -1,9 +1,9 @@
 ID - nominal
-Year_Birtch - interval
+Year_Birtch - ordinal
 Education - ordinal
 Marital_Status - nominal
 income - ratio
 kidhome - ratio
 teenhome - ratio
-dt_customer - interval
+dt_customer - ordinal
 recency and everything after - ratio

@@ -1,4 +1,3 @@
-import pandas as pd
 
 def label_encoding(datalist):
     unq = list(set(datalist))
@@ -9,11 +8,11 @@ def label_encoding(datalist):
     return mapping
         
     
-    
+
     
 def one_hot_encoding(datalist):
     unique = list(set(datalist))
-    int n = len(datalist)
+    n = len(datalist)
     matrix = []
     for i in range(0,n):
         row = []
