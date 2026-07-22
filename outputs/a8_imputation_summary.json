@@ -1,0 +1,125 @@
+{
+  "remaining_missing_values": 0,
+  "imputation_rules": {
+    "age": {
+      "method": "mean",
+      "value": 52.099694589877835
+    },
+    "TSH": {
+      "method": "median",
+      "value": 1.4
+    },
+    "T3": {
+      "method": "median",
+      "value": 1.9
+    },
+    "TT4": {
+      "method": "median",
+      "value": 104.0
+    },
+    "T4U": {
+      "method": "median",
+      "value": 0.96
+    },
+    "FTI": {
+      "method": "median",
+      "value": 109.0
+    },
+    "TBG": {
+      "method": "median",
+      "value": 26.0
+    },
+    "sex": {
+      "method": "mode",
+      "value": "F"
+    },
+    "on thyroxine": {
+      "method": "mode",
+      "value": "f"
+    },
+    "query on thyroxine": {
+      "method": "mode",
+      "value": "f"
+    },
+    "on antithyroid medication": {
+      "method": "mode",
+      "value": "f"
+    },
+    "sick": {
+      "method": "mode",
+      "value": "f"
+    },
+    "pregnant": {
+      "method": "mode",
+      "value": "f"
+    },
+    "thyroid surgery": {
+      "method": "mode",
+      "value": "f"
+    },
+    "I131 treatment": {
+      "method": "mode",
+      "value": "f"
+    },
+    "query hypothyroid": {
+      "method": "mode",
+      "value": "f"
+    },
+    "query hyperthyroid": {
+      "method": "mode",
+      "value": "f"
+    },
+    "lithium": {
+      "method": "mode",
+      "value": "f"
+    },
+    "goitre": {
+      "method": "mode",
+      "value": "f"
+    },
+    "tumor": {
+      "method": "mode",
+      "value": "f"
+    },
+    "hypopituitary": {
+      "method": "mode",
+      "value": "f"
+    },
+    "psych": {
+      "method": "mode",
+      "value": "f"
+    },
+    "TSH measured": {
+      "method": "mode",
+      "value": "t"
+    },
+    "T3 measured": {
+      "method": "mode",
+      "value": "t"
+    },
+    "TT4 measured": {
+      "method": "mode",
+      "value": "t"
+    },
+    "T4U measured": {
+      "method": "mode",
+      "value": "t"
+    },
+    "FTI measured": {
+      "method": "mode",
+      "value": "t"
+    },
+    "TBG measured": {
+      "method": "mode",
+      "value": "f"
+    },
+    "referral source": {
+      "method": "mode",
+      "value": "other"
+    },
+    "Condition": {
+      "method": "mode",
+      "value": "NO CONDITION"
+    }
+  }
+}

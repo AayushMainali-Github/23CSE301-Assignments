@@ -1,0 +1,30 @@
+{
+  "technique": "RobustScaler: (x - median) / IQR",
+  "scaled_attributes": [
+    "age",
+    "TSH",
+    "T3",
+    "TT4",
+    "T4U",
+    "FTI",
+    "TBG"
+  ],
+  "centers": {
+    "age": 55.0,
+    "TSH": 1.4,
+    "T3": 1.9,
+    "TT4": 104.0,
+    "T4U": 0.96,
+    "FTI": 109.0,
+    "TBG": 26.0
+  },
+  "scales": {
+    "age": 30.0,
+    "TSH": 1.9100000000000001,
+    "T3": 0.5000000000000002,
+    "TT4": 36.0,
+    "T4U": 0.18000000000000005,
+    "FTI": 31.0,
+    "TBG": 1.0
+  }
+}

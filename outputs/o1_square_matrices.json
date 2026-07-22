@@ -1,0 +1,27 @@
+{
+  "full_matrix": {
+    "rank": 3,
+    "costs": [
+      1.0000000000000095,
+      54.999999999999986,
+      18.0
+    ]
+  },
+  "square_rows_1_to_3": {
+    "rank": 3,
+    "costs": [
+      0.9999999999999774,
+      55.000000000000064,
+      18.0
+    ]
+  },
+  "square_rows_4_to_6": {
+    "rank": 3,
+    "costs": [
+      0.999999999999987,
+      55.00000000000005,
+      18.00000000000005
+    ]
+  },
+  "interpretation": "A full-rank square subset recovers the same product costs; a singular subset may not."
+}

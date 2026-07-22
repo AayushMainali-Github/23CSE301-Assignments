@@ -1,0 +1,15 @@
+{
+  "vector_space_dimension": 3,
+  "number_of_vectors": 10,
+  "matrix_shape": [
+    10,
+    3
+  ],
+  "rank": 3,
+  "unit_costs": {
+    "Candies (#)": 1.0000000000000095,
+    "Mangoes (Kg)": 54.999999999999986,
+    "Milk Packets (#)": 18.0
+  },
+  "max_absolute_residual": 1.9895196601282805e-13
+}
