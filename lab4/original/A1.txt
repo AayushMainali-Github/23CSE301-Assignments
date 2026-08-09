@@ -1,0 +1,8 @@
+ID               - Nominal   
+Year_Birth       - Interval  
+Education        - Ordinal   
+Marital_Status   - Nominal   
+Income           - Ratio     
+Kidhome          - Ratio     
+Teenhome         - Ratio     
+Dt_Customer      - Interval  
