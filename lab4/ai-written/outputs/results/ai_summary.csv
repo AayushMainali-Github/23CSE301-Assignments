@@ -1,0 +1,7 @@
+metric,value
+rows_after_dropna,2216.0
+features_after_encoding,35.0
+income_mean,52247.25135379061
+income_variance,633397830.1872725
+kmeans_iterations,10.0
+kmeans_inertia,529021650681.7988

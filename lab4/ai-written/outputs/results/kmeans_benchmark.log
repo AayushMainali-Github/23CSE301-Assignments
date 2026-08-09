@@ -1,0 +1,4 @@
+    algorithm  avg_time_s  min_time_s  std_time_s  iterations      inertia   cluster_sizes
+Student Lab03    0.041828    0.040650    0.002100 not exposed 5.290217e+11 [810, 837, 569]
+   AI package    0.004583    0.004227    0.000433          10 5.290217e+11 [810, 837, 569]
+Speedup x 9.127594519767886

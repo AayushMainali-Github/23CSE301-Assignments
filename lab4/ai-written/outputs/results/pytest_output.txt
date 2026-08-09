@@ -1,0 +1,39 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.5', 'Platform': 'Linux-6.18.35-x86_64-with-glibc2.41', 'Packages': {'pytest': '9.0.2', 'pluggy': '1.6.0'}, 'Plugins': {'asyncio': '1.3.0', 'ddtrace': '4.4.0', 'anyio': '4.13.0', 'metadata': '3.1.1', 'json-report': '1.5.0', 'Faker': '40.1.2', 'cov': '7.0.0'}, 'PLATFORM': 'linux/amd64', 'CI': 'true'}
+rootdir: /mnt/data/23CSE301_Lab04_Final/ai_package_lab04
+plugins: asyncio-1.3.0, ddtrace-4.4.0, anyio-4.13.0, metadata-3.1.1, json-report-1.5.0, Faker-40.1.2, cov-7.0.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 28 items
+
+tests/test_distances.py::test_manhattan PASSED                           [  3%]
+tests/test_distances.py::test_euclidean PASSED                           [  7%]
+tests/test_distances.py::test_zero_distance PASSED                       [ 10%]
+tests/test_distances.py::test_minkowski_against_scipy PASSED             [ 14%]
+tests/test_distances.py::test_bad_dimensions PASSED                      [ 17%]
+tests/test_distances.py::test_bad_p PASSED                               [ 21%]
+tests/test_kmeans.py::test_returns_expected_shapes PASSED                [ 25%]
+tests/test_kmeans.py::test_nonnegative_inertia PASSED                    [ 28%]
+tests/test_kmeans.py::test_reproducible PASSED                           [ 32%]
+tests/test_kmeans.py::test_invalid_k PASSED                              [ 35%]
+tests/test_original_lab03.py::test_original_encoding_shapes PASSED       [ 39%]
+tests/test_original_lab03.py::test_original_minkowski_matches_scipy PASSED [ 42%]
+tests/test_original_lab03.py::test_original_vector_ops_match_numpy PASSED [ 46%]
+tests/test_original_lab03.py::test_original_stats_match_numpy PASSED     [ 50%]
+tests/test_original_lab03.py::test_original_kmeans_simple_data PASSED    [ 53%]
+tests/test_preprocessing.py::test_label_encode PASSED                    [ 57%]
+tests/test_preprocessing.py::test_one_hot_encode PASSED                  [ 60%]
+tests/test_preprocessing.py::test_encode_dataframe PASSED                [ 64%]
+tests/test_preprocessing.py::test_empty_label_input PASSED               [ 67%]
+tests/test_statistics.py::test_mean PASSED                               [ 71%]
+tests/test_statistics.py::test_variance PASSED                           [ 75%]
+tests/test_statistics.py::test_std PASSED                                [ 78%]
+tests/test_statistics.py::test_dataset_stats PASSED                      [ 82%]
+tests/test_statistics.py::test_empty PASSED                              [ 85%]
+tests/test_vector_ops.py::test_dot_product PASSED                        [ 89%]
+tests/test_vector_ops.py::test_norm PASSED                               [ 92%]
+tests/test_vector_ops.py::test_zero_norm PASSED                          [ 96%]
+tests/test_vector_ops.py::test_bad_dimensions PASSED                     [100%]
+
+============================== 28 passed in 0.72s ==============================

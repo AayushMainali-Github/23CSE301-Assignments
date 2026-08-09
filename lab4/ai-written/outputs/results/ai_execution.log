@@ -1,0 +1,3 @@
+AI experiments complete
+Original shape: (2240, 29) Encoded numeric shape: (2216, 35)
+K-means iterations: 10 inertia: 529021650681.7988 cluster sizes: [810, 837, 569]
