@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 import numpy as np
 ROOT=Path(__file__).resolve().parents[2]
-ORIG=ROOT/"original_lab03"
+ORIG=ROOT/"original"
 sys.path.insert(0,str(ORIG))
 from A2 import label_encoding, one_hot_encoding
 from A4 import minkowski_distance
