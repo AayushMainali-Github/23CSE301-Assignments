@@ -5,7 +5,7 @@ import sys, pandas as pd, numpy as np
 BASE=Path(__file__).resolve().parents[1]; ROOT=BASE.parent
 sys.path.insert(0, str(BASE))
 import dmtoolkit as dm
-ORIG=ROOT/"original_lab03"; sys.path.insert(0,str(ORIG))
+ORIG=ROOT/"original"; sys.path.insert(0,str(ORIG))
 from A11 import kmeans as student_kmeans
 DATA=BASE/"data"/"data.xlsx"; RES=BASE/"outputs"/"results"; FIG=BASE/"outputs"/"figures"
 
