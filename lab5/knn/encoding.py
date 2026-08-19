@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 def unique_values(values):
     unique = []
 
@@ -39,52 +36,23 @@ def one_hot_encoding(datalist):
     return mapping
 
 
-def label_encode(values, mapping):
-    values = list(values)
-
-    if len(mapping) == 0:
-        mapping = label_encoding(values)
-
-    encoded = []
-    for value in values:
-        encoded.append(mapping[value])
-
-    return encoded, mapping
-
-
-def one_hot_encode(values, categories, prefix):
-    values = list(values)
-
-    if len(categories) == 0:
-        categories = unique_values(values)
-
-    rows = []
-    for value in values:
-        row = []
-        for category in categories:
-            row.append(int(value == category))
-        rows.append(row)
-
-    columns = []
-    for category in categories:
-        columns.append(prefix + "_" + str(category))
-
-    return pd.DataFrame(rows, columns=columns), categories
-
-
 def encode_dataframe(data, label_columns, one_hot_columns):
     result = data.copy()
     mappings = {}
 
     for column in label_columns:
-        result[column], mappings[column] = label_encode(
-            result[column], {})
+        values = result[column].tolist()
+        mappings[column] = label_encoding(values)
+        result[column] = [mappings[column][x] for x in values]
 
     for column in one_hot_columns:
-        hot, mappings[column] = one_hot_encode(
-            result[column], [], column)
-        hot.index = result.index
-        result = pd.concat(
-            [result.drop(columns=[column]), hot], axis=1)
+        values = result[column].tolist()
+        mappings[column] = one_hot_encoding(values)
+
+        for value in mappings[column]:
+            name = column + "_" + str(value)
+            result[name] = [1 if x == value else 0 for x in values]
+
+        result = result.drop(columns=[column])
 
     return result, mappings

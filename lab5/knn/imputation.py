@@ -83,36 +83,6 @@ def central_value(values, method):
     raise ValueError("use mean, median, or mode")
 
 
-def mean_substitution(values):
-    refill = mean(values)
-
-    for i in range(len(values)):
-        if missing(values[i]):
-            values[i] = refill
-
-    return values
-
-
-def median_substitution(values):
-    refill = median(values)
-
-    for i in range(len(values)):
-        if missing(values[i]):
-            values[i] = refill
-
-    return values
-
-
-def mode_substitution(values):
-    refill = mode(values)
-
-    for i in range(len(values)):
-        if missing(values[i]):
-            values[i] = refill
-
-    return values
-
-
 class SimpleImputer:
     def __init__(self, method):
         self.method = method
