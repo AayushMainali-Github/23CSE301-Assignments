@@ -1,10 +1,8 @@
-from collections import Counter
-
 import numpy as np
 
 
 def missing(value):
-    # None and nan both mean that a value is missing
+    # None and nan both mean missing
     if value is None:
         return True
 
@@ -14,29 +12,105 @@ def missing(value):
         return False
 
 
-def central_value(values, method):
-    # first remove all missing values from the column
-    present = []
+def mean(values):
+    total = 0
+    count = 0
 
-    for value in values:
-        if not missing(value):
-            present.append(value)
+    for x in values:
+        if not missing(x):
+            total = total + x
+            count = count + 1
 
-    if len(present) == 0:
+    if count == 0:
         raise ValueError("column is fully missing")
 
-    # choose the requested central tendency
+    return total / count
+
+
+def median(values):
+    validvalues = []
+
+    for x in values:
+        if not missing(x):
+            validvalues.append(x)
+
+    if len(validvalues) == 0:
+        raise ValueError("column is fully missing")
+
+    validvalues.sort()
+    n = len(validvalues)
+    middle = n // 2
+
+    # for even length, use the average of the two middle values
+    if n % 2 == 0:
+        return (validvalues[middle - 1] + validvalues[middle]) / 2
+
+    return validvalues[middle]
+
+
+def mode(values):
+    frequency = {}
+
+    for x in values:
+        if missing(x):
+            continue
+
+        if x not in frequency:
+            frequency[x] = 0
+        frequency[x] = frequency[x] + 1
+
+    if len(frequency) == 0:
+        raise ValueError("column is fully missing")
+
+    best = list(frequency.keys())[0]
+    for x in frequency:
+        if frequency[x] > frequency[best]:
+            best = x
+
+    return best
+
+
+def central_value(values, method):
     if method == "mean":
-        return float(np.mean(present))
+        return mean(values)
 
     if method == "median":
-        return float(np.median(present))
+        return median(values)
 
     if method == "mode":
-        counts = Counter(present)
-        return max(counts, key=counts.get)
+        return mode(values)
 
     raise ValueError("use mean, median, or mode")
+
+
+def mean_substitution(values):
+    refill = mean(values)
+
+    for i in range(len(values)):
+        if missing(values[i]):
+            values[i] = refill
+
+    return values
+
+
+def median_substitution(values):
+    refill = median(values)
+
+    for i in range(len(values)):
+        if missing(values[i]):
+            values[i] = refill
+
+    return values
+
+
+def mode_substitution(values):
+    refill = mode(values)
+
+    for i in range(len(values)):
+        if missing(values[i]):
+            values[i] = refill
+
+    return values
 
 
 class SimpleImputer:
@@ -56,28 +130,29 @@ class SimpleImputer:
         return self
 
     def transform(self, X):
-        # the replacement values must already be calculated
         if self.values is None:
             raise ValueError("fit first")
 
-        X = np.asarray(X, dtype=object).copy()
+        X = np.asarray(X, dtype=object)
+        result = []
 
-        # fill missing values
-        for row in range(X.shape[0]):
-            for column in range(X.shape[1]):
-                if missing(X[row, column]):
-                    X[row, column] = self.values[column]
+        # replace missing values row by row
+        for row in X:
+            newrow = []
+            for column in range(len(row)):
+                value = row[column]
+                if missing(value):
+                    value = self.values[column]
+                newrow.append(value)
+            result.append(newrow)
 
-        # kNN needs a numeric matrix after imputation
-        return X.astype(float)
+        return np.asarray(result, dtype=float)
 
     def fit_transform(self, X):
-        # fit and transform are common preprocessing steps together
         self.fit(X)
         return self.transform(X)
 
 
 def impute_matrix(X, method):
-    # short helper for using the imputer on one matrix
     imputer = SimpleImputer(method)
     return imputer.fit_transform(X)

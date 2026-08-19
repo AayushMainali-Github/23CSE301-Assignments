@@ -1,17 +1,50 @@
 import pandas as pd
 
 
+def unique_values(values):
+    unique = []
+
+    for value in values:
+        if value not in unique:
+            unique.append(value)
+
+    return unique
+
+
+def label_encoding(datalist):
+    # give every different value one number
+    unique = unique_values(datalist)
+    mapping = {}
+
+    for i in range(len(unique)):
+        mapping[unique[i]] = i
+
+    return mapping
+
+
+def one_hot_encoding(datalist):
+    # make one binary list for every different value
+    unique = unique_values(datalist)
+    mapping = {}
+
+    for i in range(len(unique)):
+        row = []
+        for j in range(len(unique)):
+            if i == j:
+                row.append(1)
+            else:
+                row.append(0)
+        mapping[unique[i]] = row
+
+    return mapping
+
+
 def label_encode(values, mapping):
-    # convert the values to a list so we can use them more than once
     values = list(values)
 
-    # create a number for every new category
     if len(mapping) == 0:
-        for value in values:
-            if value not in mapping:
-                mapping[value] = len(mapping)
+        mapping = label_encoding(values)
 
-    # replace the original category with its number
     encoded = []
     for value in values:
         encoded.append(mapping[value])
@@ -20,16 +53,11 @@ def label_encode(values, mapping):
 
 
 def one_hot_encode(values, categories, prefix):
-    # one hot encoding makes one column for each category
     values = list(values)
 
-    # remember the category order so future data has the same columns
     if len(categories) == 0:
-        for value in values:
-            if value not in categories:
-                categories.append(value)
+        categories = unique_values(values)
 
-    # put one in the matching category column and zero in the others
     rows = []
     for value in values:
         row = []
@@ -37,7 +65,6 @@ def one_hot_encode(values, categories, prefix):
             row.append(int(value == category))
         rows.append(row)
 
-    # give the new columns readable names
     columns = []
     for category in categories:
         columns.append(prefix + "_" + str(category))
@@ -46,16 +73,13 @@ def one_hot_encode(values, categories, prefix):
 
 
 def encode_dataframe(data, label_columns, one_hot_columns):
-    # work on a copy so the original table is not changed
     result = data.copy()
     mappings = {}
 
-    # use one number for each value in label-encoded columns
     for column in label_columns:
         result[column], mappings[column] = label_encode(
             result[column], {})
 
-    # replace each categorical column with its one hot columns
     for column in one_hot_columns:
         hot, mappings[column] = one_hot_encode(
             result[column], [], column)

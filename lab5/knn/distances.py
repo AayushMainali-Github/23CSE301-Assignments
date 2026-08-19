@@ -1,55 +1,59 @@
-import numpy as np
-
-
 def check_vectors(a, b):
-    # turn both inputs into numeric one dimensional arrays
-    a = np.asarray(a, dtype=float)
-    b = np.asarray(b, dtype=float)
+    a = list(a)
+    b = list(b)
 
-    # distance only makes sense for equal length vectors
-    if a.ndim != 1 or b.ndim != 1 or len(a) != len(b):
+    if len(a) != len(b):
         raise ValueError("vectors must have the same length")
 
     return a, b
 
 
 def minkowski_distance(a, b, p):
-    # Minkowski distance can become Euclidean or Manhattan
     a, b = check_vectors(a, b)
 
     if p <= 0:
         raise ValueError("p must be positive")
 
-    # calculate the distance feature by feature
-    return float(np.sum(np.abs(a - b) ** p) ** (1 / p))
+    total = 0
+
+    # calculate the total for every feature
+    for i in range(len(a)):
+        total = total + abs(a[i] - b[i]) ** p
+
+    # return the pth root
+    return total ** (1 / p)
 
 
 def euclidean_distance(a, b):
-    # Euclidean distance is Minkowski distance with p equal to 2
     return minkowski_distance(a, b, 2)
 
 
 def manhattan_distance(a, b):
-    # Manhattan distance is Minkowski distance with p equal to 1
     return minkowski_distance(a, b, 1)
 
 
 def cosine_distance(a, b):
-    # cosine distance is one minus cosine similarity
     a, b = check_vectors(a, b)
-    denominator = np.linalg.norm(a) * np.linalg.norm(b)
+    dot = 0
+    length_a = 0
+    length_b = 0
 
-    # handle zero vectors separately so there is no division by zero
+    for i in range(len(a)):
+        dot = dot + a[i] * b[i]
+        length_a = length_a + a[i] ** 2
+        length_b = length_b + b[i] ** 2
+
+    denominator = length_a ** 0.5 * length_b ** 0.5
+
     if denominator == 0:
-        if np.array_equal(a, b):
-            return 0.0
-        return 1.0
+        if a == b:
+            return 0
+        return 1
 
-    return float(1 - np.dot(a, b) / denominator)
+    return 1 - dot / denominator
 
 
 def distance(a, b, metric, p):
-    # choose the distance function from the configuration
     if metric == "euclidean":
         return euclidean_distance(a, b)
 

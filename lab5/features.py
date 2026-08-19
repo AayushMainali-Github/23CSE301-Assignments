@@ -30,12 +30,14 @@ def names():
         result += [f"mfcc_{i}_mean", f"mfcc_{i}_std"]
 
     # these are the short time spectral features
-    for name in ["centroid", "bandwidth", "rolloff", "flatness", "zcr", "rms"]:
+    for name in ["spectral_centroid", "spectral_bandwidth",
+                 "spectral_rolloff", "spectral_flatness",
+                 "zero_crossing_rate", "rms"]:
         result += [f"{name}_mean", f"{name}_std"]
 
     # these are the pitch and voicing features
     result += ["f0_mean", "f0_std", "f0_min", "f0_max", "f0_median"]
-    result += ["voiced_ratio", "duration"]
+    result += ["voiced_ratio", "duration_seconds"]
     return result
 
 
